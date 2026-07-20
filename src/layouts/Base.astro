@@ -1,0 +1,192 @@
+---
+import '../styles/global.css';
+const { t, altUrl, currentUrl } = Astro.props;
+const isEs = t.lang === 'es';
+---
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={new URL(currentUrl, Astro.site).href} />
+    <link rel="alternate" hreflang="es" href={new URL(isEs ? currentUrl : altUrl, Astro.site).href} />
+    <link rel="alternate" hreflang="en" href={new URL(isEs ? altUrl : currentUrl, Astro.site).href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:url" content={new URL(currentUrl, Astro.site).href} />
+    <meta name="theme-color" content="#05080d" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Kevin Sotelo',
+      url: 'https://010204.best',
+      email: 'mailto:kevin@010204.best',
+      jobTitle: isEs ? 'Desarrollo Web, DevOps e Infraestructura' : 'Web Development, DevOps & Infrastructure',
+      sameAs: ['https://github.com/kvsneo', 'https://linkedin.com/in/kevin-s-3a28343b1/'],
+    })} />
+  </head>
+  <body>
+    <div class="aurora" aria-hidden="true"></div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <nav class="float-nav" aria-label="Main">
+      <a class="brand" href={isEs ? '/' : '/en/'}>010204</a>
+      <div class="links" id="nav-links">
+        <a href="#inicio" data-spy="inicio" class="active">{t.nav.home}</a>
+        <a href="#servicios" data-spy="servicios">{t.nav.services}</a>
+        <a href="#proceso" data-spy="proceso">{t.nav.process}</a>
+        <a href="#proyectos" data-spy="proyectos">{t.nav.projects}</a>
+        <a href="#stack" data-spy="stack">{t.nav.stack}</a>
+        <a href="#contacto" data-spy="contacto">{t.nav.contact}</a>
+      </div>
+      <div class="lang-switch" aria-label="Language">
+        <a href="/" class={isEs ? 'active' : ''} aria-current={isEs ? 'page' : undefined}>ES</a>
+        <a href="/en/" class={!isEs ? 'active' : ''} aria-current={!isEs ? 'page' : undefined}>EN</a>
+      </div>
+      <a class="nav-cta" href="mailto:kevin@010204.best">{t.nav.cta}</a>
+    </nav>
+
+    <slot />
+
+    <footer>
+      <div class="container footer-inner">
+        <span class="mono">© {new Date().getFullYear()} {t.footer.rights}</span>
+        <span>{t.footer.built}</span>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Scroll progress
+        var bar = document.getElementById('progress');
+        function onScroll() {
+          var h = document.documentElement;
+          var p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+          bar.style.width = p * 100 + '%';
+        }
+        addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        // Reveal with stagger
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+        // Scrollspy
+        var links = document.querySelectorAll('[data-spy]');
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              links.forEach(function (l) {
+                l.classList.toggle('active', l.getAttribute('data-spy') === e.target.id);
+              });
+            }
+          });
+        }, { rootMargin: '-40% 0px -55% 0px' });
+        document.querySelectorAll('main section[id]').forEach(function (s) { spy.observe(s); });
+
+        // Typewriter
+        var twEl = document.getElementById('tw');
+        if (twEl) {
+          var roles = JSON.parse(twEl.getAttribute('data-roles'));
+          if (reduced) { twEl.textContent = roles[0]; }
+          else {
+            var ri = 0, ci = 0, del = false;
+            (function tick() {
+              var word = roles[ri];
+              twEl.textContent = word.slice(0, ci);
+              var t = del ? 34 : 74;
+              if (!del && ci === word.length) { del = true; t = 1700; }
+              else if (del && ci === 0) { del = false; ri = (ri + 1) % roles.length; t = 350; }
+              else { ci += del ? -1 : 1; }
+              setTimeout(tick, t);
+            })();
+          }
+        }
+
+        // Animated counters
+        var cio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            cio.unobserve(e.target);
+            var el = e.target;
+            var target = +el.getAttribute('data-count');
+            var prefix = el.getAttribute('data-prefix') || '';
+            var suffix = el.getAttribute('data-suffix') || '';
+            if (reduced || target === 0) { el.textContent = prefix + target + suffix; return; }
+            var start = performance.now(), dur = 1400;
+            (function frame(now) {
+              var p = Math.min((now - start) / dur, 1);
+              var eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = prefix + Math.round(target * eased) + suffix;
+              if (p < 1) requestAnimationFrame(frame);
+            })(start);
+          });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+        // Card cursor glow
+        document.querySelectorAll('.card, .step').forEach(function (card) {
+          card.addEventListener('pointermove', function (ev) {
+            var r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ev.clientX - r.left + 'px');
+            card.style.setProperty('--my', ev.clientY - r.top + 'px');
+          });
+        });
+
+        // Binary particles
+        var canvas = document.getElementById('binary-canvas');
+        if (canvas && !reduced) {
+          var ctx = canvas.getContext('2d');
+          var ps = [];
+          function resize() {
+            canvas.width = canvas.offsetWidth * devicePixelRatio;
+            canvas.height = canvas.offsetHeight * devicePixelRatio;
+            ctx.scale(devicePixelRatio, devicePixelRatio);
+          }
+          resize();
+          addEventListener('resize', resize);
+          var W = function () { return canvas.offsetWidth; };
+          var H = function () { return canvas.offsetHeight; };
+          for (var i = 0; i < 46; i++) {
+            ps.push({
+              x: Math.random() * 100, y: Math.random() * 100,
+              s: 0.008 + Math.random() * 0.03,
+              size: 9 + Math.random() * 6,
+              ch: Math.random() > 0.5 ? '1' : '0',
+              o: 0.06 + Math.random() * 0.2,
+              drift: (Math.random() - 0.5) * 0.008,
+            });
+          }
+          (function draw() {
+            ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+            ctx.clearRect(0, 0, W(), H());
+            ps.forEach(function (p) {
+              p.y -= p.s; p.x += p.drift;
+              if (p.y < -3) { p.y = 103; p.x = Math.random() * 100; }
+              ctx.font = p.size + 'px "JetBrains Mono", monospace';
+              ctx.fillStyle = 'rgba(52, 211, 153, ' + p.o + ')';
+              ctx.fillText(p.ch, (p.x / 100) * W(), (p.y / 100) * H());
+            });
+            requestAnimationFrame(draw);
+          })();
+        }
+      })();
+    </script>
+  </body>
+</html>
