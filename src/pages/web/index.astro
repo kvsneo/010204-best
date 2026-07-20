@@ -1,0 +1,359 @@
+---
+import '../../styles/global.css';
+const title = 'Páginas Web que Venden — Kevin Sotelo';
+const description =
+  '¿Su página no aparece en Google, se ve mal en celular o aún no existe? Diseño, dominio, SEO, publicidad y métricas: todo lo que su negocio necesita para vender en internet.';
+
+const pains = [
+  { icon: 'search', title: '"No aparezco en Google"', text: 'Sus clientes lo buscan… y encuentran a la competencia. Sin SEO, un negocio es invisible en internet.' },
+  { icon: 'phone', title: '"Mi página se ve vieja o lenta"', text: 'La mayoría de las visitas llegan desde el celular. Si la página tarda o se ve mal, se pierden en segundos.' },
+  { icon: 'social', title: '"Solo tengo redes sociales"', text: 'Sin un sitio propio, su negocio depende de un algoritmo que nadie controla.' },
+  { icon: 'question', title: '"No sé si mi página sirve"', text: 'Sin métricas no se sabe cuánta gente entra, qué le interesa ni por qué no compra.' },
+];
+
+const services = [
+  { icon: 'code', title: 'Diseño y Desarrollo', text: 'Página nueva o rediseño completo: moderna, rápida y perfecta en celular. Hecha a la medida de su negocio, sin plantillas genéricas.' },
+  { icon: 'globe', title: 'Dominio, Correo y Hosting', text: 'Su propio sunegocio.com con correo profesional y certificado de seguridad, en lugar del correo genérico que resta confianza.' },
+  { icon: 'seo', title: 'SEO y Google', text: 'Que lo encuentren cuando lo buscan: optimización para Google, ficha de Google Business y SEO local para su zona.' },
+  { icon: 'ads', title: 'Publicidad Digital', text: 'Campañas en Google Ads y redes sociales para atraer clientes que ya están buscando lo que usted ofrece.' },
+  { icon: 'chart', title: 'Métricas y Resultados', text: 'Un panel claro donde puede ver cuánta gente visita su página, en qué hace clic y qué le interesa. Decisiones con datos, no corazonadas.' },
+  { icon: 'shield', title: 'Seguridad y Mantenimiento', text: 'SSL, respaldos, protección contra ataques y actualizaciones continuas. Su página siempre en línea y protegida.' },
+];
+
+const stages = [
+  { num: '01', title: 'Empiezo desde cero', text: 'Aún no tiene página. Se crea su presencia completa: dominio, sitio, correo y Google desde el día uno.', tag: 'Todo incluido' },
+  { num: '02', title: 'Quiero mejorar la mía', text: 'Ya tiene página pero no le convence: se moderniza, se acelera y se posiciona para aparecer en Google.', tag: 'Rediseño' },
+  { num: '03', title: 'Quiero más clientes', text: 'Su página funciona, pero busca crecer: publicidad, SEO avanzado y métricas para escalar lo que sí da resultados.', tag: 'Crecimiento' },
+];
+
+const steps = [
+  { num: '1', title: 'Platicamos', text: 'Me cuenta sobre su negocio y sus metas. La cotización es gratuita y sin compromiso.' },
+  { num: '2', title: 'Propuesta clara', text: 'Recibe alcance, tiempo y costo por escrito. Sin letras chiquitas.' },
+  { num: '3', title: 'Manos a la obra', text: 'Desarrollo con avances visibles: usted revisa y opina durante el camino, no al final.' },
+  { num: '4', title: 'Lanzamiento y seguimiento', text: 'Su página en línea, con un reporte claro de resultados: visitas, clics e interesados.' },
+];
+
+const techs = ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Astro', 'Node.js', 'Tailwind CSS', 'Python', 'Cloudflare', 'Google Analytics', 'Google Ads', 'SEO'];
+
+const icons = {
+  search: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/>',
+  phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
+  social: '<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4m0-11-6.8 4"/>',
+  question: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 .3c0 1.7-2.5 2.2-2.5 3.7"/><circle cx="12" cy="17" r="0.5"/>',
+  code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.9 5.7 3.9 9s-1.4 6.4-3.9 9c-2.5-2.6-3.9-5.7-3.9-9S9.5 5.6 12 3Z"/>',
+  seo: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+  ads: '<path d="M3 11l18-7-7 18-2.5-7.5L3 11Z"/>',
+  chart: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 16v-5m4 5V8m4 8v-3"/>',
+  shield: '<path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3Z"/><path d="m9.5 12 2 2 3.5-4"/>',
+};
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://010204.best/web/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://010204.best/web/" />
+    <meta name="theme-color" content="#05080d" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="aurora" aria-hidden="true"></div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <nav class="float-nav" aria-label="Main">
+      <a class="brand" href="/web/">010204</a>
+      <div class="links">
+        <a href="#problemas">El problema</a>
+        <a href="#solucion">La solución</a>
+        <a href="#etapas">Tu caso</a>
+        <a href="#proceso">Proceso</a>
+      </div>
+      <a class="nav-cta" href="mailto:kevin@010204.best?subject=Cotización página web">Cotizar gratis</a>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero lp-hero" id="inicio">
+        <div class="container hero-content">
+          <span class="badge">Páginas web para negocios</span>
+          <h1>Su negocio merece una página<br /><span class="lp-grad">que sí venda</span></h1>
+          <p class="description">
+            Si su página no aparece en Google, se ve mal en el celular — o aún no existe —
+            es probable que cada día haya clientes que terminen comprando en otro lado. Eso tiene solución.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="mailto:kevin@010204.best?subject=Cotización página web">Cotización gratis <span class="arrow">→</span></a>
+            <a class="btn btn-ghost" href="#solucion">Qué incluye</a>
+          </div>
+
+          <!-- Dashboard mockup -->
+          <div class="dash reveal" aria-hidden="true">
+            <div class="mock-bar">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="url">panel.sunegocio.com</span>
+            </div>
+            <div class="dash-body">
+              <div class="dash-kpis">
+                <div class="kpi"><span class="kpi-label">Visitas hoy</span><span class="kpi-value" data-count="184" data-suffix="">0</span><span class="kpi-trend up">▲ 12%</span></div>
+                <div class="kpi"><span class="kpi-label">Clics en contacto</span><span class="kpi-value" data-count="31" data-suffix="">0</span><span class="kpi-trend up">▲ 8%</span></div>
+                <div class="kpi"><span class="kpi-label">Desde Google</span><span class="kpi-value" data-count="67" data-suffix="%">0</span><span class="kpi-trend">—</span></div>
+                <div class="kpi"><span class="kpi-label">Nuevos interesados</span><span class="kpi-value" data-count="9" data-suffix="">0</span><span class="kpi-trend up">▲ 3</span></div>
+              </div>
+              <div class="dash-chart">
+                <div class="bar" style="--h:35%"></div><div class="bar" style="--h:52%"></div><div class="bar" style="--h:44%"></div>
+                <div class="bar" style="--h:66%"></div><div class="bar" style="--h:58%"></div><div class="bar" style="--h:80%"></div>
+                <div class="bar hot" style="--h:94%"></div>
+              </div>
+              <div class="dash-note">Así de claro: cuánta gente entra, qué le interesa y en qué hace clic.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAINS -->
+      <section id="problemas">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="badge">¿Te suena familiar?</span>
+            <h2>Señales de que una página web<br /><span class="grad">está costando clientes</span></h2>
+          </div>
+          <div class="cards-2">
+            {pains.map((p, i) => (
+              <div class="card reveal" style={`--d:${(i % 2) * 0.1}s`}>
+                <div class="icon">
+                  <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icons[p.icon]} />
+                </div>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solucion">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="badge">La solución completa</span>
+            <h2>Todo lo que su página necesita, <span class="grad">en un solo lugar</span></h2>
+            <p class="lead">Sin coordinar a tres proveedores distintos: diseño, dominio, Google, publicidad y métricas — un solo responsable de que todo funcione.</p>
+          </div>
+          <div class="cards-3">
+            {services.map((s, i) => (
+              <div class="card reveal" style={`--d:${(i % 3) * 0.1}s`}>
+                <div class="icon">
+                  <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={icons[s.icon]} />
+                </div>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- STAGES -->
+      <section id="etapas">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="badge">Tu punto de partida</span>
+            <h2>¿En qué situación está <span class="grad">su negocio?</span></h2>
+            <p class="lead">No importa el punto de partida: hay un camino claro para cada caso.</p>
+          </div>
+          <div class="cards-3">
+            {stages.map((s, i) => (
+              <div class="card stage-card reveal" style={`--d:${i * 0.12}s`}>
+                <div class="stage-top">
+                  <span class="stage-num">{s.num}</span>
+                  <span class="tag">{s.tag}</span>
+                </div>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="proceso">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="badge">Cómo funciona</span>
+            <h2>Simple y sin <span class="grad">tecnicismos</span></h2>
+          </div>
+          <div class="lp-steps">
+            {steps.map((s, i) => (
+              <div class="step reveal" style={`--d:${i * 0.1}s`}>
+                <div class="num">{s.num}</div>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            {[...techs, ...techs].map((m) => <span>{m}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST -->
+      <section id="quien">
+        <div class="container">
+          <div class="about-wrap reveal">
+            <span class="badge">¿Quién está detrás?</span>
+            <h2>Transparencia <span class="grad">desde el inicio</span></h2>
+            <p>
+              Las páginas que desarrollo se publican sobre la red global de Cloudflare — la misma
+              tecnología que utilizan millones de sitios en el mundo — con dominio propio, certificado
+              de seguridad y actualizaciones automáticas. Infraestructura de nivel empresarial,
+              sin que su negocio tenga que pagar ni mantener servidores.
+            </p>
+            <p>
+              Este mismo sitio está construido así, y puede comprobarlo: velocidad, seguridad y
+              disponibilidad. Si desea conocer más sobre mi experiencia y proyectos, con gusto:
+            </p>
+            <div class="hero-ctas" style="margin-top: 26px; margin-bottom: 0;">
+              <a class="btn btn-ghost" href="/">Conocer el portafolio <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section id="contacto">
+        <div class="container">
+          <div class="contact-card reveal">
+            <span class="badge">Comience hoy</span>
+            <h2>Cuénteme sobre <span class="grad">su negocio</span></h2>
+            <p class="lead">La cotización es gratuita y sin compromiso. Desde la primera plática se lleva ideas claras para su página.</p>
+            <a class="contact-email" href="mailto:kevin@010204.best">kevin@010204.best</a>
+            <div class="contact-links">
+              <a class="btn btn-primary" href="mailto:kevin@010204.best?subject=Cotización página web">Solicitar cotización gratis <span class="arrow">→</span></a>
+              <a class="btn btn-ghost" href="/">Ver portafolio</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <span class="mono">© {new Date().getFullYear()} Kevin Sotelo · 010204.best</span>
+        <span>Páginas web, SEO y publicidad para negocios</span>
+      </div>
+    </footer>
+
+    <style>
+      .lp-hero { min-height: auto; padding: 150px 0 80px; }
+      .lp-hero h1 {
+        font-size: clamp(2.2rem, 6vw, 3.9rem);
+      }
+      .lp-grad {
+        background: var(--gradient);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      .dash {
+        max-width: 760px; margin: 64px auto 0;
+        background: #070b12; border: 1px solid var(--panel-border); border-radius: var(--radius);
+        overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); text-align: left;
+      }
+      .dash-body { padding: 22px; }
+      .dash-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+      .kpi {
+        background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border); border-radius: 12px;
+        padding: 12px 14px; display: flex; flex-direction: column; gap: 2px;
+      }
+      .kpi-label { font-size: 0.68rem; color: var(--text-dim); }
+      .kpi-value { font-family: var(--mono); font-size: 1.4rem; font-weight: 700; color: var(--text); }
+      .kpi-trend { font-family: var(--mono); font-size: 0.66rem; color: var(--text-dim); }
+      .kpi-trend.up { color: var(--accent); }
+      .dash-chart {
+        display: flex; align-items: flex-end; gap: 10px; height: 110px; padding: 0 6px;
+        border-bottom: 1px solid var(--panel-border); margin-bottom: 14px;
+      }
+      .dash-chart .bar {
+        flex: 1; height: var(--h); border-radius: 6px 6px 0 0;
+        background: linear-gradient(180deg, rgba(34, 211, 238, 0.55), rgba(34, 211, 238, 0.12));
+        transform-origin: bottom; animation: growbar 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+      }
+      .dash-chart .bar:nth-child(2) { animation-delay: 0.08s; }
+      .dash-chart .bar:nth-child(3) { animation-delay: 0.16s; }
+      .dash-chart .bar:nth-child(4) { animation-delay: 0.24s; }
+      .dash-chart .bar:nth-child(5) { animation-delay: 0.32s; }
+      .dash-chart .bar:nth-child(6) { animation-delay: 0.4s; }
+      .dash-chart .bar:nth-child(7) { animation-delay: 0.48s; }
+      .dash-chart .bar.hot { background: linear-gradient(180deg, rgba(52, 211, 153, 0.75), rgba(52, 211, 153, 0.15)); }
+      @keyframes growbar { from { transform: scaleY(0); } }
+      .dash-note { font-size: 0.8rem; color: var(--text-dim); text-align: center; }
+      .stage-card .stage-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+      .stage-num {
+        font-family: var(--mono); font-size: 1.6rem; font-weight: 700;
+        background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+      }
+      .lp-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 40px; }
+      @media (max-width: 900px) { .dash-kpis { grid-template-columns: repeat(2, 1fr); } .lp-steps { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 520px) { .lp-steps { grid-template-columns: 1fr; } }
+    </style>
+
+    <script is:inline>
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var bar = document.getElementById('progress');
+        function onScroll() {
+          var h = document.documentElement;
+          bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight || 1)) * 100 + '%';
+        }
+        addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+        var cio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            cio.unobserve(e.target);
+            var el = e.target;
+            var target = +el.getAttribute('data-count');
+            var suffix = el.getAttribute('data-suffix') || '';
+            if (reduced) { el.textContent = target + suffix; return; }
+            var start = performance.now(), dur = 1400;
+            (function frame(now) {
+              var p = Math.min((now - start) / dur, 1);
+              var eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(target * eased) + suffix;
+              if (p < 1) requestAnimationFrame(frame);
+            })(start);
+          });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+
+        document.querySelectorAll('.card, .step').forEach(function (card) {
+          card.addEventListener('pointermove', function (ev) {
+            var r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ev.clientX - r.left + 'px');
+            card.style.setProperty('--my', ev.clientY - r.top + 'px');
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
