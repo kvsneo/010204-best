@@ -79,7 +79,9 @@ const isEs = t.lang === 'es';
               referrer: document.referrer || null,
             });
             if (navigator.sendBeacon) {
-              navigator.sendBeacon(TRACK_URL, new Blob([payload], { type: 'application/json' }));
+              // text/plain evita el preflight CORS que sendBeacon no puede completar de forma fiable.
+              // El Worker igual lo interpreta como JSON (Content-Type no bloquea request.json()).
+              navigator.sendBeacon(TRACK_URL, new Blob([payload], { type: 'text/plain' }));
             } else {
               fetch(TRACK_URL, { method: 'POST', body: payload, headers: { 'Content-Type': 'application/json' }, keepalive: true });
             }
