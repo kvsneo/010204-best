@@ -320,12 +320,8 @@ const icons = {
               label: label || null,
               referrer: document.referrer || null,
             });
-            if (navigator.sendBeacon) {
-              // text/plain evita el preflight CORS que sendBeacon no puede completar de forma fiable.
-              navigator.sendBeacon(TRACK_URL, new Blob([payload], { type: 'text/plain' }));
-            } else {
-              fetch(TRACK_URL, { method: 'POST', body: payload, headers: { 'Content-Type': 'application/json' }, keepalive: true });
-            }
+            // fetch con keepalive: mas fiable que sendBeacon con Cloudflare Access delante.
+            fetch(TRACK_URL, { method: 'POST', body: payload, headers: { 'Content-Type': 'application/json' }, keepalive: true }).catch(function () {});
           } catch (e) {}
         }
         track('pageview');
